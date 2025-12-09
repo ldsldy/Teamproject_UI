@@ -3,3 +3,12 @@
 
 #include "MainHud.h"
 
+void UMainHud::NativeConstruct()
+{
+	Super::NativeConstruct();
+}
+
+void UMainHud::NativeDestruct()
+{
+	Super::NativeDestruct();
+}

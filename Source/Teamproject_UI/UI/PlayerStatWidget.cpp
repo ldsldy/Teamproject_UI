@@ -11,6 +11,8 @@ void UPlayerStatWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
+	UE_LOG(LogTemp, Warning, TEXT("UPlayerStatWidget::NativeConstruct called"));
+
 	PlayerStatusViewModel = GetGameInstance()->GetSubsystem<UMVVMSubsystem>()->GetPlayerStatusViewModel();
 
 	if (PlayerStatusViewModel)
@@ -19,9 +21,6 @@ void UPlayerStatWidget::NativeConstruct()
 		PlayerStatusViewModel->OnPlayerHealthChanged.AddDynamic(this, &UPlayerStatWidget::SetPlayerHealth);
 		PlayerStatusViewModel->OnPlayerResourceChanged.AddDynamic(this, &UPlayerStatWidget::SetPlayerResource);
 		PlayerStatusViewModel->OnPlayerIconChanged.AddDynamic(this, &UPlayerStatWidget::SetPlayerIcon);
-
-		SetPlayerHealth(1.0f);
-		SetPlayerResource(1.0f);
 	}
 }
 
@@ -38,7 +37,8 @@ void UPlayerStatWidget::NativeDestruct()
 
 void UPlayerStatWidget::SetPlayerHealth(float NewHealthPercent)
 {
-	PlayerHPBar->SetPercent(NewHealthPercent);
+	UE_LOG(LogTemp, Warning, TEXT("SetPlayerHealth called with percent: %f"), NewHealthPercent);
+	PlayerHealthBar->SetPercent(NewHealthPercent);
 }
 
 void UPlayerStatWidget::SetPlayerResource(float NewResourcePercent)

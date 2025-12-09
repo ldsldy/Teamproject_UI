@@ -19,9 +19,12 @@ protected:
 	virtual void NativeDestruct() override;
 
 private:
-	/// --- 뷰모델
+	/// --- 뷰모델 바인딩 함수 ---
+	UFUNCTION()
 	void SetPlayerHealth(float NewHealthPercent);
+	UFUNCTION()
 	void SetPlayerResource(float NewResourcePercent);
+	UFUNCTION()
 	void SetPlayerIcon(UTexture2D* NewPlayerIcon);
 
 ///==================== 변수 ======================== 
@@ -29,7 +32,7 @@ private:
 protected:
 	// --- 플레이어의 체력 프로그레스바---
 	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UProgressBar> PlayerHPBar;
+	TObjectPtr<class UProgressBar> PlayerHealthBar;
 
 	// --- 플레이어의 자원 프로그레스바---
 	UPROPERTY(meta = (BindWidget))

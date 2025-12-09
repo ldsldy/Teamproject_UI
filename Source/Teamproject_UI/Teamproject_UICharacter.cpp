@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Teamproject_UI/Components/PlayerStatComponent.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -52,6 +53,16 @@ ATeamproject_UICharacter::ATeamproject_UICharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	// 플레이어의 액터 컴포넌트들
+	PlayerStatComponent = CreateDefaultSubobject<UPlayerStatComponent>(TEXT("PlayerStatComponent"));
+}
+
+void ATeamproject_UICharacter::BeginPlay()
+{
+	// Call the base class  
+	Super::BeginPlay();
+
 }
 
 //////////////////////////////////////////////////////////////////////////

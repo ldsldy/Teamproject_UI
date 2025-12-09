@@ -11,6 +11,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
+class UPlayerStatComponent;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
@@ -47,15 +48,14 @@ class ATeamproject_UICharacter : public ACharacter
 public:
 	ATeamproject_UICharacter();
 	
-
 protected:
+	virtual void BeginPlay() override;
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-			
 
 protected:
 
@@ -68,5 +68,16 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
+	//===============================================
+public:
+	// 플레이어의 스탯 컴포넌트 Getter 함수
+	UFUNCTION(BlueprintCallable)
+	UPlayerStatComponent* GetPlayerStatComponent() { return PlayerStatComponent; }
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<UPlayerStatComponent> PlayerStatComponent;
 };
 

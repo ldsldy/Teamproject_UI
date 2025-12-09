@@ -14,4 +14,12 @@ class TEAMPROJECT_UI_API UMainHud : public UUserWidget
 {
 	GENERATED_BODY()
 	
+protected:
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+
+protected:
+	// --- 플레이어 스탯 위젯 ---
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<class UPlayerStatWidget> PlayerStatPanel;
 };
