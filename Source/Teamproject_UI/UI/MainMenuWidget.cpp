@@ -2,8 +2,10 @@
 
 
 #include "MainMenuWidget.h"
-#include "Teamproject_UI/UI/MainMenuButtonWidget.h"
 #include "Components/Button.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Teamproject_UI/UI/MainMenuButtonWidget.h"
+#include "Teamproject_UI/Subsystem/GameStateSubsystem.h"
 
 void UMainMenuWidget::NativeConstruct()
 {
@@ -30,7 +32,14 @@ void UMainMenuWidget::NativeConstruct()
 void UMainMenuWidget::OnNewGameClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("New Game Clicked"));
-	OpenLevel()
+
+	if (UGameInstance* GI = GetGameInstance())
+	{
+		if (UGameStateSubsystem* GameStateSubsystem = GI->GetSubsystem<UGameStateSubsystem>())
+		{
+			GameStateSubsystem->TravelToLobby();
+		}
+	}
 }
 
 void UMainMenuWidget::OnContinueGameClicked()
@@ -46,4 +55,13 @@ void UMainMenuWidget::OnSettingClicked()
 void UMainMenuWidget::OnQuitClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Quit Clicked"));
+
+	APlayerController* PC = GetOwningPlayer();
+
+	UKismetSystemLibrary::QuitGame(
+		this,
+		PC,
+		EQuitPreference::Quit,
+		false
+	);
 }
