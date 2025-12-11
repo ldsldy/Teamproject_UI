@@ -92,7 +92,11 @@ void UGameStateSubsystem::ExecuteLevelTravel(const FLevelData& LevelData)
 		UE_LOG(LogTemp, Log, TEXT("Traveling to level: %s"), *LevelData.LevelAsset.ToString());
 
 		FString LevelPath = LevelData.LevelAsset.ToString();
+		
+		// OpenLevel을 활용한 레벨 이동
 		UGameplayStatics::OpenLevel(GetWorld(), FName(*LevelPath));
+
+		// LoadStreamLevel을 이용한 레벨 이동
 	}
 	else if (!LevelData.LevelName.IsNone())
 	{
