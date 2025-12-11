@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Teamproject_UI/Data/CharacterDataTableRow.h"
 #include "CharacterSelectMenu.generated.h"
 
 /**
@@ -17,6 +18,9 @@ class TEAMPROJECT_UI_API UCharacterSelectMenu : public UUserWidget
 protected:
 	virtual void NativeConstruct() override;
 
+	UFUNCTION()
+	void OnCharacterSelected(UObject* SelectedItem);	
+
 protected:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UTileView> CharacterTileView = nullptr;
@@ -26,4 +30,7 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UButton> SelectButton = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData")
+	TObjectPtr<UDataTable> CharacterDataTable = nullptr;
 };
