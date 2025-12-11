@@ -8,6 +8,7 @@
 #include "CharacterPreviewTile.generated.h"
 
 class UImage;
+class UChracterDataObject;
 /**
  * 
  */
@@ -18,6 +19,8 @@ class TEAMPROJECT_UI_API UCharacterPreviewTile : public UUserWidget, public IUse
 	
 protected:
 	virtual void NativeOnListItemObjectSet(UObject* ListItemObject) override;
+
+	void SetCharacterIcon(UTexture2D* NewIcon);
 
 protected:
 	UPROPERTY(meta = (BindWidget))

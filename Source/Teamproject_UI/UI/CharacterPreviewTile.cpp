@@ -2,11 +2,27 @@
 
 
 #include "CharacterPreviewTile.h"
+#include "Components/Image.h"
+#include "Teamproject_UI/Object/CharacterDataObject.h"
 
 void UCharacterPreviewTile::NativeOnListItemObjectSet(UObject* ListItemObject)
 {
-	// MVVM을 이용하여 ListItemObject쪽으로 자신의 주소를 담아서 델리게이트 발송
-	// 델리게이트를 받은 ListItemObject쪽에서 자신의 데이터를 다시 이곳으로 보내줌.
+	IUserObjectListEntry::NativeOnListItemObjectSet(ListItemObject);
 	
-	//ListItemObject->
+	// Tile List에서 AddItem(UObject* obj)를 통해 전달된 객체를 받아옴
+	// 캐릭터는 종류가 많지 않기에 그냥 캐스팅으로 처리 => 만약에 나중에 종류가 많아지면 인터페이스로 변경 고려
+	UCharacterDataObject* CharacterData = Cast<UCharacterDataObject>(ListItemObject);
+
+	if (CharacterData)
+	{
+		SetCharacterIcon(CharacterData->CharacterIcon);
+	}
+}
+
+void UCharacterPreviewTile::SetCharacterIcon(UTexture2D* NewIcon)
+{
+	if (CharacterIcon && NewIcon)
+	{
+		CharacterIcon->SetBrushFromTexture(NewIcon);
+	}
 }

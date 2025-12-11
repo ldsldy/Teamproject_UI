@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Teamproject_UI/Types/CharacterTypes.h"
 #include "CharacterDataObject.generated.h"
 
 /**
@@ -15,9 +16,16 @@ class TEAMPROJECT_UI_API UCharacterDataObject : public UObject
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ECharacterType CharacterType = ECharacterType::None;
+
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
-	TObjectPtr<UTexture2D> CharacterIcon;
+	TObjectPtr<UTexture2D> CharacterIcon = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TObjectPtr<UTexture2D> CharacterIllustration;
+	TObjectPtr<UTexture2D> CharacterIllustration = nullptr;
+
+public:
+	// --- 데이터 테이블 행을 받으면 해당 데이터행의 값들로 초기화 ---
+	void InitFromDataTableRow(const struct FCharacterDataTableRow& DataRow);
 };

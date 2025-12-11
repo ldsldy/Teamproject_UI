@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
+#include "Engine/DataTable.h"
 #include "Teamproject_UI/Common/GameStateTypes.h"
 #include "MyGameSettings.generated.h"
 
@@ -29,4 +30,7 @@ public:
 	// 시작 게임 상태
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "Game State")
 	EGameState DefaultStartState = EGameState::MainMenu;
+
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "Character")
+	TSoftObjectPtr<UDataTable> CharacterDataTable;
 };

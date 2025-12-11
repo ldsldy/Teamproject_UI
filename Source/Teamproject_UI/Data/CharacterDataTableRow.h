@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Teamproject_UI/Types/CharacterTypes.h"
 #include "CharacterDataTableRow.generated.h"
 /**
  * 
@@ -14,6 +15,9 @@ struct FCharacterDataTableRow : public FTableRowBase
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnyWhere, BlueprintReadOnly)
+	ECharacterType CharacterType;
+
 	UPROPERTY(EditAnyWhere, BlueprintReadOnly)
 	FString CharacterName;
 

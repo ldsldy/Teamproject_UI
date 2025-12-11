@@ -2,4 +2,11 @@
 
 
 #include "CharacterDataObject.h"
+#include "Teamproject_UI/Data/CharacterDataTableRow.h"
 
+void UCharacterDataObject::InitFromDataTableRow(const FCharacterDataTableRow& DataRow)
+{
+	CharacterType = DataRow.CharacterType;
+	CharacterIcon = DataRow.CharacterIcon;
+	CharacterIllustration = DataRow.CharacterIllustration;
+}
